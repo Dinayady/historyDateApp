@@ -1,4 +1,4 @@
-import { Arrow } from '../svg/Arrow';
+import Arrow from '../svg/arrow.svg';
 
 import styled from 'styled-components';
 
@@ -30,8 +30,8 @@ export const NavButton = ({
     }
 
     return (
-        <NavButtonContainer $rotated={rotated} onClick={handleClick}>
-            <Arrow stroke={disabled ? '#42567A50' : '#42567A'} />
+        <NavButtonContainer $rotated={rotated} onClick={handleClick} style={{ color: disabled ? 'var(--main-text-color)50' : 'var(--main-text-color)' }}>
+            <Arrow />
         </NavButtonContainer>
     )
 };
@@ -40,8 +40,8 @@ const NavButtonContainer = styled.div<{ $rotated: boolean }>`
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    border: 1px solid #42567A50;
-    background: #FFFFFF;
+    border: 1px solid var(--second-border-color);
+    background: var(--main-background-color);
     text-align: center;
     align-content: center;
     

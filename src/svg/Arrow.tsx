@@ -1,7 +1,0 @@
-export const Arrow = ({ stroke = '#3877EE' }: { stroke?: string }) => {
-    return (
-        <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.707093 0.707092L5.70709 5.70709L0.707093 10.7071" stroke={stroke} strokeWidth="2" />
-        </svg>
-    )
-}

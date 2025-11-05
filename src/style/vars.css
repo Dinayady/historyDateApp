@@ -1,0 +1,9 @@
+:root {
+    --main-text-color: #42567A;
+    --main-background-color: #FFFFFF;
+    --main-accent-color: #3877EE;
+    --active-button-color: rgba(59, 119, 238, 10);
+    --second-accent-color: #EF5DA8;
+    --main-border-color: #42567A20;
+    --second-border-color: #42567A50;
+}

@@ -2,7 +2,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { CardInfo } from './CardInfo';
-import { mockDate } from '../mockData';
+import { mockDate } from '../mockDate';
 import { SliderButton } from './SliderButton';
 
 import 'swiper/css';
@@ -87,7 +87,7 @@ const SliderContainer = styled.div`
         .swiper-pagination-bullet {
             width: 6px;
             height: 6px;
-            background: #42567A;
+            background: var(--main-text-color);
             border-radius: 50%;
             opacity: 0.7;
         }

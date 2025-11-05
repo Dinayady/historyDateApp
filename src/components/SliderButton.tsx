@@ -1,4 +1,4 @@
-import { Arrow } from "../svg/Arrow";
+import Arrow from '../svg/arrow.svg';
 
 import styled from "styled-components";
 
@@ -19,8 +19,9 @@ const SliderButtonContainer = styled.div<{ $rotated: boolean }>`
     width: 40px;
     height: 40px;
     border-radius: 40px;
-    filter: drop-shadow(0px 0px 15px #3878ee49);
-    background: #FFFFFF;
+    filter: drop-shadow(0px 0px 15px var(--active-button-color));
+    background: var(--main-background-color);
+    color: var(--main-accent-color);
     text-align: center;
     align-content: center;
     

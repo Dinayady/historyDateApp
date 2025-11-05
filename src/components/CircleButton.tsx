@@ -35,8 +35,8 @@ export const CircleButton = forwardRef<HTMLDivElement, CircleButtonProps>(({
 const Container = styled.div<{ $angle: number }>`
     width: 56px;
     height: 56px;
-    border: 1px solid #303E5850;
-    background: #ffff;
+    border: 1px solid var(--second-border-color);
+    background: var(--main-background-color);
     border-radius: 56px;
     align-content: center;
     text-align: center;
@@ -71,7 +71,7 @@ const Container = styled.div<{ $angle: number }>`
 const Info = styled.div<{ $angle: number }>`
     font-weight: 400;
     font-size: 20px;
-    color: #42567A;
+    color: var(--main-text-color);
     transform: rotate(${props => props.$angle}deg);
     
     @media (max-width: 768px) {
@@ -82,7 +82,7 @@ const Info = styled.div<{ $angle: number }>`
 const CircleTitle = styled.div<{ $angle: number }>`
     font-weight: 700;
     font-size: 20px;
-    color: #42567A;
+    color: var(--main-text-color);
     transform: rotate(${props => props.$angle}deg);
     
     @media (max-width: 768px) {

@@ -16,7 +16,6 @@
     "styled-components": "^5"
   },
   "dependencies": {
-    "@types/styled-components": "^5.1.35",
     "gsap": "^3.13.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -28,8 +27,10 @@
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
+    "@svgr/webpack": "^8.1.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "@types/styled-components": "^5.1.35",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.4",

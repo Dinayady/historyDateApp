@@ -3,7 +3,8 @@ import {
     useRef,
     useEffect,
     Dispatch,
-    SetStateAction
+    SetStateAction,
+    FC
 } from 'react';
 import { gsap } from 'gsap';
 
@@ -16,7 +17,7 @@ interface CircleProps {
     setPoint: Dispatch<SetStateAction<number>>;
 }
 
-export const Circle = ({ point, setPoint }: CircleProps) => {
+export const Circle: FC<CircleProps> = ({ point, setPoint }) => {
     const [hoveredDot, setHoveredDot] = useState<number | null>(null);
 
     const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -183,7 +184,7 @@ export const Circle = ({ point, setPoint }: CircleProps) => {
 };
 
 const Container = styled.div`
-    border: 1px solid #42567A20;
+    border: 1px solid var(--main-border-color);
     position: absolute;
     z-index: 2;
     width: 530px;
@@ -216,7 +217,7 @@ const Dot = styled.div<{ $angle: number }>`
     width: 6px;
     height: 6px;
     border-radius: 3px;
-    background: #42567A;
+    background: var(--main-text-color);
     position: absolute;
     top: calc(50% + 265px * sin(${props => props.$angle}deg));
     left: calc(50% + 265px * cos(${props => props.$angle}deg));

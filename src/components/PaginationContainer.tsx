@@ -1,30 +1,33 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { NavButton } from "./NavButton";
+import { TIMELINE } from "../screen/Home/constants";
 
 import styled from "styled-components";
 
 interface PaginationContainerProps {
-    paginationText: string;
-    timeline: number[][];
     point: number;
     setPoint: Dispatch<SetStateAction<number>>;
 }
 
+const normalizePages = (page: number) => `0${page}`
+
 export const PaginationContainer = ({
-    paginationText,
-    timeline,
     point,
     setPoint
 }: PaginationContainerProps) => {
+    const currentPage = point + 1;
+    const sizePages = TIMELINE.length;
+    const countPages: string = normalizePages(currentPage) + '/' + normalizePages(sizePages);
+
     return (
         <PaginationWrapper>
             <Number>
-                {paginationText}
+                {countPages}
             </Number>
             <BtnContainer>
                 <NavButton rotated disabled={point === 0} setPoint={setPoint} point={point} prev />
-                <NavButton disabled={point === timeline.length - 1} setPoint={setPoint} point={point} />
+                <NavButton disabled={point === TIMELINE.length - 1} setPoint={setPoint} point={point} />
             </BtnContainer>
         </PaginationWrapper>
     )
@@ -47,7 +50,7 @@ const PaginationWrapper = styled.div`
 const Number = styled.div`
     font-weight: 400;
     font-size: 14px;
-    color: #42567A;
+    color: var(--main-text-color);
 `;
 
 const BtnContainer = styled.div`

@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import styled from 'styled-components';
 
 interface CardInfoProp {
@@ -5,10 +7,10 @@ interface CardInfoProp {
     subTitle: string;
 }
 
-export const CardInfo = ({
+export const CardInfo: FC<CardInfoProp> = ({
     title,
     subTitle
-}: CardInfoProp) => {
+}) => {
 
     return (
         <CardContainer>
@@ -42,8 +44,7 @@ const Title = styled.h2`
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-size: 25px;
-    color: #3877EE;
-    margin: 0;
+    color: var(--main-accent-color);
     
     @media (max-width: 768px) {
         font-size: 20px;
@@ -53,7 +54,7 @@ const Title = styled.h2`
 const Subtitle = styled.div`
     font-weight: 400;
     font-size: 20px;
-    color: #42567A;
+    color: var(--main-text-color);
     max-width: 320px;
     
     @media (max-width: 768px) {
