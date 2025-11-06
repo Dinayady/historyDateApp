@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 import { NavButton } from "./NavButton";
 import { TIMELINE } from "../screen/Home/constants";
@@ -7,15 +7,17 @@ import styled from "styled-components";
 
 interface PaginationContainerProps {
     point: number;
-    setPoint: Dispatch<SetStateAction<number>>;
+    setNextPage: VoidFunction;
+    setPrevPage: VoidFunction;
 }
 
 const normalizePages = (page: number) => `0${page}`
 
-export const PaginationContainer = ({
+export const PaginationContainer: FC<PaginationContainerProps> = ({
     point,
-    setPoint
-}: PaginationContainerProps) => {
+    setNextPage,
+    setPrevPage,
+}) => {
     const currentPage = point + 1;
     const sizePages = TIMELINE.length;
     const countPages: string = normalizePages(currentPage) + '/' + normalizePages(sizePages);
@@ -26,8 +28,18 @@ export const PaginationContainer = ({
                 {countPages}
             </Number>
             <BtnContainer>
-                <NavButton rotated disabled={point === 0} setPoint={setPoint} point={point} prev />
-                <NavButton disabled={point === TIMELINE.length - 1} setPoint={setPoint} point={point} />
+                <NavButton
+                    isRotated
+                    isPrevious
+                    disabled={point === 0}
+                    setNextPage={() => setNextPage()}
+                    setPrevPage={() => setPrevPage()}
+                />
+                <NavButton
+                    disabled={point === TIMELINE.length - 1}
+                    setNextPage={() => setNextPage()}
+                    setPrevPage={() => setPrevPage()}
+                />
             </BtnContainer>
         </PaginationWrapper>
     )

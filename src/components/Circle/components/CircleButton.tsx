@@ -39,12 +39,16 @@ export const CircleButton = forwardRef<HTMLDivElement, CircleButtonProps>(({
         onMouseLeave();
         const circleBtn = circleBtnRefs.current[index];
         if (circleBtn) {
-            gsap.to(circleBtn, {
+            gsap.fromTo(circleBtn, {
+                width: 56,
+                height: 56,
+                opacity: 1,
+            }, {
                 width: 6,
                 height: 6,
                 opacity: 0,
-                duration: 0.3,
-                ease: "power2.in"
+                duration: 3.7,
+                ease: "power2.out"
             });
         }
     };
@@ -59,6 +63,11 @@ export const CircleButton = forwardRef<HTMLDivElement, CircleButtonProps>(({
             >
                 <Info $angle={angleText}>
                     {index + 1}
+                    {title && (
+                        <CircleTitle >
+                            Наука
+                        </CircleTitle>
+                    )}
                 </Info>
             </Container>
         </div>
@@ -102,6 +111,7 @@ const Container = styled.div<{ $angle: number }>`
 `
 
 const Info = styled.div<{ $angle: number }>`
+    position: relative;
     font-weight: 400;
     font-size: 20px;
     color: var(--main-text-color);
@@ -112,11 +122,14 @@ const Info = styled.div<{ $angle: number }>`
     }
 `;
 
-const CircleTitle = styled.div<{ $angle: number }>`
+const CircleTitle = styled.div`
+    position: absolute;
+    top: 50%;
+    right: -70px;
+    transform: translateY(-50%);
     font-weight: 700;
     font-size: 20px;
     color: var(--main-text-color);
-    transform: rotate(${props => props.$angle}deg);
     
     @media (max-width: 768px) {
         font-size: 16px;

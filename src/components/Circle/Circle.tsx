@@ -2,13 +2,11 @@ import {
     useState,
     useRef,
     useEffect,
-    Dispatch,
-    SetStateAction,
     FC
 } from 'react';
 import { gsap } from 'gsap';
 
-import { CircleButton } from '../CircleButton';
+import { CircleButton } from './components/CircleButton';
 
 import styled from 'styled-components';
 import { Dot } from './components/Dot';

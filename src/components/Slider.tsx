@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,10 +10,17 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import styled from 'styled-components';
+import { TIMELINE } from '../screen/Home/constants';
 
-export const Slider = ({ timeline }: { timeline: any }) => {
+interface SliderProps {
+    point: number;
+}
+
+export const Slider: FC<SliderProps> = ({
+    point,
+}) => {
     const dateInfo = mockDate.filter((item) => {
-        return item.date >= timeline[0] && item.date <= timeline[1];
+        return item.date >= TIMELINE[point][0] && item.date <= TIMELINE[point][1];
     });
 
 

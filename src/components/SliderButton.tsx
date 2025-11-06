@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import Arrow from '../svg/arrow.svg';
 
 import styled from "styled-components";
@@ -7,7 +8,10 @@ interface ArrowBtnProps {
     className: string;
 };
 
-export const SliderButton = ({ rotated = false, className }: ArrowBtnProps) => {
+export const SliderButton: FC<ArrowBtnProps> = ({
+    rotated = false,
+    className
+}) => {
     return (
         <SliderButtonContainer $rotated={rotated} className={className}>
             <Arrow />

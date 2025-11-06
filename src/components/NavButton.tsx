@@ -1,47 +1,54 @@
+import { FC } from 'react';
 import Arrow from '../svg/arrow.svg';
 
 import styled from 'styled-components';
 
 interface NavButtonProps {
-    rotated?: boolean;
+    isRotated?: boolean;
     disabled?: boolean;
-    prev?: boolean;
-    point: number;
-    setPoint: React.Dispatch<React.SetStateAction<number>>;
+    isPrevious?: boolean;
+    setPrevPage: VoidFunction;
+    setNextPage: VoidFunction;
 }
 
-export const NavButton = ({
-    rotated = false,
+export const NavButton: FC<NavButtonProps> = ({
+    isRotated = false,
     disabled = false,
-    prev = false,
-    point,
-    setPoint,
-}: NavButtonProps) => {
+    isPrevious = false,
+    setPrevPage,
+    setNextPage,
+}) => {
 
     const handleClick = () => {
         if (disabled) return;
 
-        if (prev) {
-            setPoint(point - 1)
+        if (isPrevious) {
+            setPrevPage();
         } else {
-            setPoint(point + 1)
+            setNextPage();
         }
 
     }
 
     return (
-        <NavButtonContainer $rotated={rotated} onClick={handleClick} style={{ color: disabled ? 'var(--main-text-color)50' : 'var(--main-text-color)' }}>
+        <NavButtonContainer
+            $rotated={isRotated}
+            $disabled={disabled}
+            onClick={handleClick}
+            style={{}}
+        >
             <Arrow />
         </NavButtonContainer>
     )
 };
 
-const NavButtonContainer = styled.div<{ $rotated: boolean }>`
+const NavButtonContainer = styled.div<{ $rotated: boolean, $disabled: boolean }>`
     width: 50px;
     height: 50px;
     border-radius: 50px;
     border: 1px solid var(--second-border-color);
     background: var(--main-background-color);
+    color: ${props => props.$disabled ? 'var(--second-border-color)' : 'var(--main-text-color)'};
     text-align: center;
     align-content: center;
     

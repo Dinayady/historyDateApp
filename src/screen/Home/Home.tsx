@@ -21,7 +21,6 @@ export const Home: FC = () => {
 
     useEffect(() => {
         if (prevPoint !== point) {
-
             if (firstDateEl && secondDateEl) {
                 const prevFirstDate = TIMELINE[prevPoint][0];
                 const prevSecondDate = TIMELINE[prevPoint][1];
@@ -32,7 +31,6 @@ export const Home: FC = () => {
 
                 animateDate(secondDateEl, prevSecondDate, newSecondDate);
             }
-
             setPrevPoint(point);
         }
     }, [point, prevPoint]);
@@ -60,9 +58,10 @@ export const Home: FC = () => {
                 <SliderContainer>
                     <PaginationContainer
                         point={point}
-                        setPoint={setPoint}
+                        setNextPage={() => setPoint(point + 1)}
+                        setPrevPage={() => setPoint(point - 1)}
                     />
-                    <Slider timeline={TIMELINE[point]} />
+                    <Slider point={point} />
                 </SliderContainer>
             </Container>
 
