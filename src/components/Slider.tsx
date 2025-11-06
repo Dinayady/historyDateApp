@@ -2,15 +2,16 @@ import { FC } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { TIMELINE } from '../screen/Home/constants';
+import { mockData } from '../mockData';
+
 import { CardInfo } from './CardInfo';
-import { mockDate } from '../mockDate';
 import { SliderButton } from './SliderButton';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import styled from 'styled-components';
-import { TIMELINE } from '../screen/Home/constants';
 
 interface SliderProps {
     point: number;
@@ -19,7 +20,7 @@ interface SliderProps {
 export const Slider: FC<SliderProps> = ({
     point,
 }) => {
-    const dateInfo = mockDate.filter((item) => {
+    const dateInfo = mockData.filter((item) => {
         return item.date >= TIMELINE[point][0] && item.date <= TIMELINE[point][1];
     });
 

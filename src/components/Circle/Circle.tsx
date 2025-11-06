@@ -6,10 +6,10 @@ import {
 } from 'react';
 import { gsap } from 'gsap';
 
+import { Dot } from './components/Dot';
 import { CircleButton } from './components/CircleButton';
 
 import styled from 'styled-components';
-import { Dot } from './components/Dot';
 
 interface CircleProps {
     point: number;

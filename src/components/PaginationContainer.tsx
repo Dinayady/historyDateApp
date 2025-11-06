@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 
 import { NavButton } from "./NavButton";
 import { TIMELINE } from "../screen/Home/constants";

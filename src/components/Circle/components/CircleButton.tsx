@@ -1,7 +1,8 @@
-import { forwardRef, RefObject } from 'react';
+import { forwardRef, RefObject, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 import styled from "styled-components";
+import { TIMELINE_LABEL } from '../../../screen/Home/constants';
 
 interface CircleButtonProps {
     angle: number;
@@ -24,6 +25,8 @@ export const CircleButton = forwardRef<HTMLDivElement, CircleButtonProps>(({
     onMouseLeave,
     title,
 }) => {
+    const circleTitleRef = useRef<HTMLDivElement>(null);
+
     const handleDotClick = (index: number) => {
         if (index === point) return;
         onClick();
@@ -32,6 +35,19 @@ export const CircleButton = forwardRef<HTMLDivElement, CircleButtonProps>(({
     const setCircleBtnRef = (index: number) => (el: HTMLDivElement) => {
         circleBtnRefs.current[index] = el;
     };
+
+    useEffect(() => {
+        if (circleTitleRef.current && index === point) {
+            gsap.set(circleTitleRef.current, { opacity: 0 });
+
+            gsap.to(circleTitleRef.current, {
+                opacity: 1,
+                duration: 1,
+                delay: 0.5,
+                ease: "power2.out"
+            });
+        }
+    }, [point, index]);
 
     const handleMouseLeave = (index: number) => {
         if (index === point) return;
@@ -64,8 +80,8 @@ export const CircleButton = forwardRef<HTMLDivElement, CircleButtonProps>(({
                 <Info $angle={angleText}>
                     {index + 1}
                     {title && (
-                        <CircleTitle >
-                            Наука
+                        <CircleTitle ref={circleTitleRef}>
+                            {TIMELINE_LABEL[index]}
                         </CircleTitle>
                     )}
                 </Info>
@@ -125,7 +141,7 @@ const Info = styled.div<{ $angle: number }>`
 const CircleTitle = styled.div`
     position: absolute;
     top: 50%;
-    right: -70px;
+    left: 70px;
     transform: translateY(-50%);
     font-weight: 700;
     font-size: 20px;
