@@ -1,4 +1,5 @@
-import { forwardRef } from 'react';
+import { forwardRef, RefObject } from 'react';
+import { gsap } from 'gsap';
 
 import styled from "styled-components";
 
@@ -6,23 +7,55 @@ interface CircleButtonProps {
     angle: number;
     angleText: number;
     index: number;
+    point: number;
+    onClick: VoidFunction;
+    circleBtnRefs: RefObject<(HTMLDivElement)[]>;
     title?: boolean;
-    onClick: any;
+    onMouseLeave?: any;
 }
 
 export const CircleButton = forwardRef<HTMLDivElement, CircleButtonProps>(({
     angle,
     index,
     angleText,
+    point,
+    onClick,
+    circleBtnRefs,
+    onMouseLeave,
     title,
-    onClick
-}, ref) => {
+}) => {
+    const handleDotClick = (index: number) => {
+        if (index === point) return;
+        onClick();
+    };
+
+    const setCircleBtnRef = (index: number) => (el: HTMLDivElement) => {
+        circleBtnRefs.current[index] = el;
+    };
+
+    const handleMouseLeave = (index: number) => {
+        if (index === point) return;
+
+        onMouseLeave();
+        const circleBtn = circleBtnRefs.current[index];
+        if (circleBtn) {
+            gsap.to(circleBtn, {
+                width: 6,
+                height: 6,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in"
+            });
+        }
+    };
+
     return (
         <div>
             <Container
                 $angle={angle}
-                onClick={onClick}
-                ref={ref}
+                onClick={() => handleDotClick(index)}
+                ref={setCircleBtnRef(index)}
+                onMouseLeave={() => handleMouseLeave(index)}
             >
                 <Info $angle={angleText}>
                     {index + 1}

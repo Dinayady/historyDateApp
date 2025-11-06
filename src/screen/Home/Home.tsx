@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react';
 
-import { Circle } from '../../components/Circle';
+import { Circle } from '../../components/Circle/Circle';
 import { Slider } from '../../components/Slider';
 import { PaginationContainer } from '../../components/PaginationContainer';
 
@@ -41,7 +41,7 @@ export const Home: FC = () => {
         <Wrapper>
             <BackgroundLine $rotated={false} />
             <BackgroundLine $rotated={true} />
-            <Circle point={point} setPoint={setPoint} />
+            <Circle point={point} onClickCircleButton={(index) => setPoint(index)} />
             <TitleContainer>
                 <GradLine />
                 <Text>
